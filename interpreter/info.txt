@@ -1,0 +1,88 @@
+Every line starts with a library declaration - only 3 currently, s (standard), m (maths), and f (function)
+Then a command within the library, such as out (print something to the terminal)
+Then any inputs for that command
+
+All separated by colons (:)
+
+Standard library contains:
+    out - output to console
+    in - get user input and assign it to a variable
+    var - create a variable
+    if - run a function if a condition is true
+
+Standard library usage:
+    out:
+        has 2 options, var or no var:
+            var:
+                Outputs the contents of the variable passed to the command
+                usage: s:out:var:hello prints the contents of the variable titled hello
+            
+            no var:
+                Outputs the passed string
+                usage: s:out:hello world would output "hello world" to the terminal
+    
+    in:
+        Outputs a prompt and assigns user input to a variable
+        usage: f:in:enter a number:x would output "enter a number", allow the user to input something, and store the input in a variable called x
+
+        the prompt is not an optional field, however can be left blank
+        usage: s:in::x would simply allow the user to input something, without prompting first
+    
+    var:
+        creates or updates a variable and gives it a name and a value. Values can be any data type
+        usage: s:var:a:4 creates a variable called a and gives it the value 4
+    
+    if:
+        has 2 options, mvars or single var:
+            mvars:
+                Compares two variables and runs the requested function if the condition is true
+                usage: s:if:mvars:=:a:b:example compares the values of a and be to see if they are equal, then runs the function named example if they are
+            single var:
+                Compares a variable and a number and runs the requested function if the condition is true. The variable must always be passed as the second argument after the if:: call
+                usage: s:if::=:a:4:example compares if the value of a equals 4, then runs the function named example if they are
+
+        Only numbers can be compared, strings will throw an error.
+
+        There are 6 possible comparisons: 
+            = (equal to)
+            > (greater than)
+            < (less than)
+            >= (greater than or equal to)
+            <= (less than or equal to)
+            != (not equal to)
+
+Maths library usage:
+    Uses reverse Polish notation 
+    e.g.: +:2:3 returns 5
+
+    It has two modes: vars and regular
+
+    vars:
+        processes 2 variables, performing the operation listed and returning the result to the variable declared
+        usage: m:vars:+:a:b:c adds variables a and b, and assigns it to variable c
+    
+    regular:
+        processes 2 numbers, performing the operation listed and returning the result to the variable declared. Called using a blank keyword
+        usage: m::+:3:4:c adds numbers 3 and 4 and assigns the result to variable c
+
+    variable and non-variable operations cannot be mixed, so if it is necessary the non-variable value should be assigned to a new variable and variable operations used
+
+    There are 5 operations available:
+        + (addition)
+        - (subtraction)
+        * (multiplication)
+        / (division)
+        ^ (powers)
+
+Functions library contains:
+    def - create a function
+    call - call a previously created function
+
+Functions library usage:
+    def:
+        creates a function, assigns it a name, and declare what code it contains
+        usage: f:def:hello:s:out:hello world creates a function called hello, with the code s:out:hello world (output the string hello world to the console)
+    
+    call:
+        calls a previously created function, running the code contained inside
+        usage: f:call:test calls the custom function named test
