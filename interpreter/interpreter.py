@@ -114,7 +114,7 @@ def define_function(fields): # create a function
     functions.update({name: function_contents}) # add function name and command to functions dictionary
 
 def call_function(name): # call the requested user-created function
-    parse(functions[name])
+    function_parser(functions[name])
 
 def function_library(fields): # define the function library
     if fields[1] == "def": # def keyword creates a function
@@ -122,11 +122,13 @@ def function_library(fields): # define the function library
     elif fields[1] == "call": # call keyword calls an existing function
         call_function(fields[2])
 
-def function_parser(function):
-    commands = function.strip().split("\n")
-    for i in range(len(commands)):
-        fields = commands[i].strip().split(":")
-        if fields[0] == "s":
+def function_parser(functions_list): # parse functions separately cause they're weird (it could go in the regular parser probably, but this is easier to change trust)
+    commands = functions_list.strip().split("&") # split the string of everything a function does into its distinct commands
+    for i in range(len(commands)): # actually do each command
+        fields = commands[i].strip().split(":") # this is the same as the regular parser, split each command into individual fields
+        if fields[0] == "":
+            fields.pop(0) # remove the first field cause it'll be blank and break stuff
+        if fields[0] == "s": # back to regular parser again
             standard_library(fields)
         elif fields[0] == "m":
             maths_library(fields)
