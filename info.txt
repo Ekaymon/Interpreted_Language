@@ -80,8 +80,8 @@ Functions library contains:
 
 Functions library usage:
     def:
-        creates a function, assigns it a name, and declare what code it contains
-        usage: f:def:hello:s:out:hello world creates a function called hello, with the code s:out:hello world (output the string hello world to the console)
+        creates a function, assigns it a name, and declare what code it contains. A function can contain unlimited commands, however they must all be on one line and separated using & as a delimeter
+        usage: f:def:hello:s:out:hello:&:s:out:world creates a function called hello, which contains the lines of code s:out:hello and s:out:world (output the string hello to the console, then output the string word on a new line)
     
     call:
         calls a previously created function, running the code contained inside
