@@ -33,23 +33,6 @@ def if_handler(fields): # handle if statements
 
     # do the requested comparison and if true, call requested function
 
-def out_var(fields): # handle outputting strings and variables
-    for i in range(2): # remove the actual command 
-        fields.pop(0)
-
-    i = 0
-    while i < len(fields): # run till the end of the string
-        if fields[i] == "v": # v flag is used before a variable
-            try:
-                print(variables[fields[i + 1]], end="") # print the data stored in the variable of the field AFTER the one containing the v flag, without a newline
-            except:
-                print("Error! Variable named in out function does not exist!")
-            i += 2 # increment i by 2 so we don't print the variable name :)
-        else: # if the variable flag isn't there, just print it as a string
-            print(fields[i], end="") # print the string without a newline
-            i += 1 # only increment by 1 because yes
-    print("\n", end="") # add a newline character at the end of the printed line
-
 def standard_library(fields): # define the standard library
     if fields[1] == "out": # define out command
         for i in range(2): # remove the actual command 
