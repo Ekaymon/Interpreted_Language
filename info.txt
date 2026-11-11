@@ -12,18 +12,13 @@ Standard library contains:
 
 Standard library usage:
     out:
-        has 2 options, var or no var:
-            var:
-                Outputs the contents of the variable passed to the command
-                usage: s:out:var:hello prints the contents of the variable titled hello
-            
-            no var:
-                Outputs the passed string
-                usage: s:out:hello world would output "hello world" to the terminal
+        Outputs, on one line, to the console. Calling it on its own will output whatever follows as a string, adding the flag v will instead search for a variable called the value of the next field and output it.
+        Several strings and variables can be stacked on one line.
+        usage: s:out:Testing! :v:name would print the string "Testing! " to the terminal, then search for the value of a variable called "name" and print it, followed by a newline. 
     
     in:
         Outputs a prompt and assigns user input to a variable
-        usage: f:in:enter a number:x would output "enter a number", allow the user to input something, and store the input in a variable called x
+        usage: s:in:enter a number:x would output "enter a number", allow the user to input something, and store the input in a variable called x
 
         the prompt is not an optional field, however can be left blank
         usage: s:in::x would simply allow the user to input something, without prompting first
