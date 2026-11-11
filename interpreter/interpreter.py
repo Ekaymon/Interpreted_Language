@@ -111,7 +111,6 @@ def define_function(fields): # create a function
         function_contents += fields[i]
         function_contents += ":"
 
-
     functions.update({name: function_contents}) # add function name and command to functions dictionary
 
 def call_function(name): # call the requested user-created function
@@ -123,9 +122,20 @@ def function_library(fields): # define the function library
     elif fields[1] == "call": # call keyword calls an existing function
         call_function(fields[2])
 
+def function_parser(function):
+    commands = function.strip().split("\n")
+    for i in range(len(commands)):
+        fields = commands[i].strip().split(":")
+        if fields[0] == "s":
+            standard_library(fields)
+        elif fields[0] == "m":
+            maths_library(fields)
+        elif fields[0] == "f":
+            function_library(fields)
+
 def parse(line): # parse each line in the script individually
     fields = line.strip().split(":") # split the command up using the colon delimeter
-
+    
     if fields[0] == "s":
         standard_library(fields)
     elif fields[0] == "m":
