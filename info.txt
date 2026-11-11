@@ -35,6 +35,10 @@ Standard library usage:
             single var:
                 Compares a variable and a number and runs the requested function if the condition is true. The variable must always be passed as the second argument after the if:: call
                 usage: s:if::=:a:4:example compares if the value of a equals 4, then runs the function named example if they are
+        
+        Also has optional else flag:
+            Allows a different function to run if a check if not true
+            usage: s:if:mvars:=:x:y:example1:else:example2 compares the values of variables x and y, if they are equal the function "example1" will run, if not "example2" will run
 
         Only numbers can be compared, strings will throw an error.
 

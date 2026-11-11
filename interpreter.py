@@ -12,24 +12,39 @@ def if_handler(fields): # handle if statements
         x = float(variables[fields[4]])
         y = float(fields[5])
 
+    check_passed = False
+
     if fields[3] == "=":
         if x == y:
             call_function(fields[6])
+            check_passed = True
     elif fields[3] == "!=":
         if x != y:
             call_function(fields[6])
+            check_passed = True
     elif fields[3] == ">":
         if x > y:
             call_function(fields[6])
+            check_passed = True
     elif fields[3] == "<":
         if x < y:
             call_function(fields[6])
+            check_passed = True
     elif fields[3] == ">=":
         if x >= y:
             call_function(fields[6])
+            check_passed = True
     elif fields[3] == "<=":
         if x <= y:
             call_function(fields[6])
+            check_passed = True
+
+    if not check_passed:
+        try:
+            if fields[7] == "else":
+                call_function(fields[8])
+        except:
+            pass
 
     # do the requested comparison and if true, call requested function
 
