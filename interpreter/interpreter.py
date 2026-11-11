@@ -53,6 +53,10 @@ def standard_library(fields): # define the standard library
     elif fields[1] == "if": # define if command
         if_handler(fields) # pass over to if statement handler 
 
+    elif fields[1] == "for": # define for command
+        for i in range(fields[2]:
+            call_function(fields[3])
+
     elif fields[1] == "exit": # define exit command
         quit() # stop execution of program
     
