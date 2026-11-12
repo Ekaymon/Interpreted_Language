@@ -1,6 +1,6 @@
 # Interpreter Script #
 import sys 
-
+graphics_windows = None 
 variables = {}
 functions = {} # initialise dictionaries that store variables and functions created in the interpreted script
 
@@ -146,6 +146,7 @@ def function_library(fields): # define the function library
 
 def function_parser(functions_list): # parse functions separately cause they're weird (it could go in the regular parser probably, but this is easier to change trust)
     commands = functions_list.strip().split("&") # split the string of everything a function does into its distinct commands
+    global graphics_windows # only load the graphics file if a 'g' flag is found
     for i in range(len(commands)): # actually do each command
         fields = commands[i].strip().split(":") # this is the same as the regular parser, split each command into individual fields
         if fields[0] == "":
@@ -156,17 +157,26 @@ def function_parser(functions_list): # parse functions separately cause they're 
             maths_library(fields)
         elif fields[0] == "f":
             function_library(fields)
+        elif fields[0] == "g":
+            if graphics_windows is None:
+                import graphics_windows as gui
+            gui.gui_library(fields, variables)
+        
 
 def parse(line): # parse each line in the script individually
     fields = line.strip().split(":") # split the command up using the colon delimeter
-    
+    global graphics_windows # only load the graphics file if 'g' flag is found
     if fields[0] == "s":
         standard_library(fields)
     elif fields[0] == "m":
         maths_library(fields)
     elif fields[0] == "f":
         function_library(fields)
-
+    elif fields[0] == "g":
+        if graphics_windows is None:
+            
+            import graphics_windows as gui
+        gui.gui_library(fields, variables)
     # chose library based on library flag
 
 def main(): # load file
