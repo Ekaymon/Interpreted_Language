@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+void parse(char line[]);
+
 FILE *fptr;
 char filename[50];
 
@@ -18,8 +20,12 @@ int main(int argc, char *argv[]) {
     char line[500];
 
     while(fgets(line, 100, fptr)) {
-        printf("%s", line);
+        parse(line);
     }
     fclose(fptr);
     return 0;
+}
+
+void parse(char line[]) {
+    printf("%s", line);
 }
