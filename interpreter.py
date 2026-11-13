@@ -3,14 +3,19 @@ import sys
 graphics_windows = None 
 variables = {}
 functions = {} # initialise dictionaries that store variables and functions created in the interpreted script
+line_number = 0
 
 def if_handler(fields): # handle if statements
-    if fields[2] == "mvars": # mvars flag allows multiple variables to be used, so set both x and y to the values of the 2 passed variables
-        x = float(variables[fields[4]])
-        y = float(variables[fields[5]])
-    else: # no flag means only 1 variable is being used, so set x to its value and y to the passed number
-        x = float(variables[fields[4]])
-        y = float(fields[5])
+    try: # user error handling shenanagins
+        if fields[2] == "mvars": # mvars flag allows multiple variables to be used, so set both x and y to the values of the 2 passed variables
+            x = float(variables[fields[4]])
+            y = float(variables[fields[5]])
+        else: # no flag means only 1 variable is being used, so set x to its value and y to the passed number
+            x = float(variables[fields[4]])
+            y = float(fields[5])
+    except: # Tell the user they messed up and where, then quit the program
+        print(f"Error in line No {line_number}, field 2, 4, or 5. Quitting execution.") 
+        quit()
 
     check_passed = False
 
@@ -45,6 +50,7 @@ def if_handler(fields): # handle if statements
                 call_function(fields[8])
         except:
             pass
+
 
     # do the requested comparison and if true, call requested function
 
@@ -161,7 +167,6 @@ def function_parser(functions_list): # parse functions separately cause they're 
             if graphics_windows is None:
                 import graphics_windows as gui
             gui.gui_library(fields, variables)
-        
 
 def parse(line): # parse each line in the script individually
     fields = line.strip().split(":") # split the command up using the colon delimeter
@@ -180,6 +185,7 @@ def parse(line): # parse each line in the script individually
     # chose library based on library flag
 
 def main(): # load file
+    global line_number
     try: # if passed a script file from the command line attempt to open that. If not, or if that fails, ask the user for a script file
         file = open(sys.argv[1], "r")
     except:
@@ -187,6 +193,7 @@ def main(): # load file
 
     for line in file: # parse each line in file
         parse(line)
+        line_number += 1
 
 if __name__ == "__main__":
     main()
