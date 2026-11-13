@@ -88,13 +88,13 @@ Functions library usage:
 
 Graphics library contains:
     spawnwindow - spawns a window with the win32 api
-    changepixle - changes the colour of a pixle, using rgb values
+    changepixel - changes the colour of a pixel, using rgb values
 
 Graphics library usage:
     spawnwindow:
         creates a window that has a defualt white background, many windows can be spawned at the same time. The windows cannot be reized after creation
-        usage: g:spawnwindow:<width>:<height>:<window id>   width and height are the number of pixles the window dimesions should be. The window id is a string that the window can be reffered to by other things
+        usage: g:spawnwindow:<width>:<height>:<window id>   width and height are the number of pixels the window dimensions should be. The window id is a string that the window can be reffered to by other things
 
-    changepixle:
-        changes the state of a pixle at a certain x,y coord to any colour in the rgb range
-        usage: g:changepixle:<window id>:<x>:<y>:<r>:<g>:<b>   window id is the string used as the name at window creation, x & y is the position of the pixle to be changed. r, g, b are the the red, green, and blue values that the pixle should take 
+    changepixel:
+        changes the state of a pixel at a certain x,y coord to any colour in the rgb range
+        usage: g:changepixel:<window id>:<x>:<y>:<r>:<g>:<b>   window id is the string used as the name at window creation, x & y is the position of the pixel to be changed. r, g, b are the the red, green, and blue values that the pixel should take 

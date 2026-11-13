@@ -43,7 +43,7 @@ def gui_library(fields: list, variables: dict):
     gui_variables = variables
     if fields[1] == "spawnwindow":
         spawn_window(fields)
-    elif fields[1] == "changepixle":
+    elif fields[1] == "changepixel":
         change_pixel(fields)
 
 
@@ -125,7 +125,7 @@ def spawn_window(fields) -> None:
 
 
 def change_pixel(fields) -> None:
-    #[g:changepixle:name:x:y:r:g:b]
+    #[g:changepixel:name:x:y:r:g:b]
     win = _windows.get(fields[2])
     if win is None:
         raise RuntimeError(f"no window named {fields[2]!r}") # failed to find a window with the correct name
@@ -147,6 +147,6 @@ def change_pixel(fields) -> None:
 if __name__ == "__main__":
     #g:spawnwindow:300:300:test
     gui_library(["g", "spawnwindow", 300, 300, "test"])
-    #g:changepixle:test:50:50:255:0:0
+    #g:changepixel:test:50:50:255:0:0
     #                    x y  r   g b
-    gui_library(["g", "changepixle", "test", 50, 50, 255, 0, 0])
+    gui_library(["g", "changepixel", "test", 50, 50, 255, 0, 0])
