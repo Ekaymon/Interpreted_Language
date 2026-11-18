@@ -27,7 +27,9 @@ int main(int argc, char *argv[]) {
 }
 
 void parse(char line[]) {
+    char field[strlen(line);
+    char[20][50] 
     for (int i = 0; i < strlen(line); i++) {
-        printf("%s", line)
+         
     }
 }
