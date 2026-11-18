@@ -50,7 +50,7 @@ Standard library usage:
             <= (less than or equal to)
             != (not equal to)
     For:
-        For loops do stuff, example:
+        For loops do stuff, example: s:for:3:test will run the function "test" three times
 
 Maths library usage:
     Uses reverse Polish notation 
