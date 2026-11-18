@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
     if (argc > 1) {
         strcpy(filename, argv[1]);
     }
-    else {;
+    else {
         printf("Enter path to file: ");
         scanf("%s", filename);
     }
@@ -27,5 +27,7 @@ int main(int argc, char *argv[]) {
 }
 
 void parse(char line[]) {
-    printf("%s", line);
+    for (int i = 0; i < strlen(line); i++) {
+        printf("%s", line)
+    }
 }
